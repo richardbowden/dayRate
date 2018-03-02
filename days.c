@@ -130,12 +130,11 @@ int number_of_days(struct tm* from, struct tm* to, int working_days_only)
 
         for (; month_loop <= max_month; month_loop++) {
 
-            //we are in the start month, so we more than likly be counting from day 1
+            //end month and year
             if ((year_loop == from->tm_year) && (month_loop == from->tm_mon)) {
 
                 if (working_days_only == 1) {
-                    int tmp_days = lookup_days_in_month(from);
-                    int weekdays = count_weekdays(from->tm_mday, tmp_days, month_loop, year_loop);
+                    int weekdays = count_weekdays(from->tm_mday, to->tm_mday, month_loop, year_loop);
 
                     days += weekdays;
                 } else {
